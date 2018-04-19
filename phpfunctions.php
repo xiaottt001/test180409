@@ -42,7 +42,7 @@ echo $_SERVER['DOCUMENT_ROOT'];//当前网页的根目录目录
 
 echo "<br>";
 
-$str=" sdaf我们 sd ";
+$str=" sdaf我们 s ";
 $len=strlen($str);
 $len=mb_strlen($str);
 
