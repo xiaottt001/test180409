@@ -1,0 +1,179 @@
+body {
+	margin:0px;
+	padding:0px;
+	background:#1A80CA;
+}
+
+#container {
+	width:1000px;
+	margin:0px auto;
+	border: 1px solid white;
+	background:url("../img/body_bg.jpg") no-repeat;
+	background-size:100%;
+	background:#FEC399;
+}
+
+#toptb {
+	width:100%;
+	height:50px;
+	background:#1E1E1E;
+}
+
+#banner {
+	width:90%;
+	margin:1px auto;
+	height:105px;
+}
+
+#globallink {
+	width:90%;
+	margin-left:5%;
+}
+
+#globallink ul {
+	list-style-type:none;
+	margin:0px;
+	padding:0px;
+}
+
+#globallink ul li {
+	float:left;
+	text-align:center;
+}
+
+#globallink ul li a{
+	display:block;
+	padding:9px 32px 11px 31px;
+	margin:0px;
+	background:#810307;
+	border: 1px solid #C00010;
+}
+
+#globallink ul li a:link,#globallink ul li a:visited {
+	display:block;
+	color:#ffffff;
+	text-decoration:none;
+}
+
+#globallink ul li a:hover {
+	background:#0D6FA5;
+}
+
+#buchong {
+	width:90%;
+	margin:0px auto;
+	height:15px;
+	background:#C00010;
+	clear:both;
+}
+
+#search {
+	width:90%;
+	margin:0px auto;
+	height:40px;
+	padding-top:10px;
+	clear:both;
+	background:white;
+}
+
+#search .search1 {
+	width:300px;
+	height:30px;
+	float:left;
+	margin-left:10px;
+	padding-top:5px;
+}
+
+#homepng {
+	width:30px;
+	height:30px;
+	background:url("../img/home.png") no-repeat;
+	float:left;
+}
+
+.search1 a{
+	text-decoration:none;
+}
+
+#search .search2 {
+	width:300px;
+	border: 1px solid #EEEEEE;
+	float:right;
+	margin-right:10px;
+	padding:3px 0px 3px 3px;
+}
+
+#searchbutton{
+	width:40px;
+	height:20px;
+	padding-top:5px;
+	padding-left:10px;
+	background:#E3E3E3;
+	color:#999999;
+	font-size:14px;
+	float:left;
+}
+
+#searchform {
+	padding:1px 0px 0px 2px;
+	float:left;
+}
+
+#fangdajing {
+	float:left;
+	padding-left:3px;
+}
+
+#left {
+	width:30%;
+	height:150px;
+	margin-left:5%;
+	background:white;
+	float:left;
+}
+
+#left .left{
+}
+
+#mid {
+	width:30%;
+	height:150px;
+	background:white;
+	float:left;
+}
+
+.midtop {
+	padding: 2px 2px 2px 5%;
+	width:94%;
+	background:yellow;
+}
+
+.midcenter ul{
+	padding:0px;
+	margin:0px;
+	list-style-type:none;
+}
+
+.midcenter ul li {
+	background:url("../img/icon.png") no-repeat 2px;
+	padding:2px 2px 2px 15px;
+}
+
+#right {
+	width:30%;
+	height:150px;
+	background:white;
+	float:left;
+}
+
+#footer {
+	width:100%;
+	height:50px;
+	background:#E8F2FE;
+	clear:both;
+}
+
+
+
+
+

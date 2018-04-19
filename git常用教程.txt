@@ -1,0 +1,153 @@
+版本回退的前提是没有推送到远程库
+
+1.git官网下载git对应的系统版本
+
+2.安装，win7系统下全部默认
+
+3.cmd下运行gitbash
+
+$ git config --global user.name "your name"
+$ git config --global user.email "your_email@youremail.com"
+设定用户名和email，提交时git用这个识别命令：
+
+$ git add readme.txt
+添加文件到git仓库
+  
+$ git commit -m "wrote a readme file"
+提交文件
+
+$ git status
+查看改动文件
+
+$ git diff readme.txt
+查看改动文件细节，不加文件则显示全部文件改动
+  
+$ git commit -m "add distributed"
+查看改动后先加入add，之后再提交
+  
+$ git reset HEAD benchmarks.rb
+取消add后的操作，取消暂存
+
+$ git log --pretty=oneline 111.txt  （不加文件显示所有日志）
+查看提交日志
+
+$ git reset --hard HEAD^^^  （不能加具体文件，回退后提交多个的文件也全部回退）  
+版本回退
+  
+$ git reflog 查看所有历史版本号，包括回退之前的
+版本回退后要返回之前的版本
+  
+$ git reset --hard 版本号  回退到任意版本
+查到历史版本号后使用命令git reset --hard commit_id。（多个文件全部回退）
+  
+git diff 版本1 版本2 [文件]
+查看2个文件版本直接的改动
+ 
+git checkout -- file
+从文件区迁出文件到工作区
+
+git remote add origin git@github.com:xiaottt001/learngit.git
+关联远程仓库
+
+git push yuancheng master
+推送到远程仓库（远程库关联不对则无法推送）
+
+git remote -v
+查看当前关联远程仓库
+
+git remote rm [remote-name]
+删除远程仓库本地关联
+
+
+
+============================================
+分支的操作管理
+git branch //查看分支  
+git branch dev //创建分支  
+git checkout dev //切换分支  
+git checkout -b dev //创建并切换分支 
+
+$ git clone git@github.com:michaelliao/gitskills.git
+克隆远程仓库，只会克隆远程仓库的主分支
+ 
+$ git branch -a
+可查看到本地和远程所有分支情况，和本地当前工作的分支
+ 
+$ git checkout -t origin/python_mail.skin
+在本地建立一个和远程分支名一样的分支
+
+$ git checkout -b python_mail.skin origin/python_mail.skin
+在本地建立一个自己命名的分支
+ 
+操作本机不同的分支，bug分支
+git checkout master //先切换到master分支  
+git checkout -b bug //创建bug分支，并切换到bug分支上  
+... //解决bug  
+git add . //在bug分支上add  
+git commit -m "fix bug" //在bug分支上commit  
+git checkout master //切换回master分支  
+git merge --no-ff bug //在master分支上合并bug分支  
+git branch -d bug //删除bug分支
+
+一个完整的git使用流程 
+
+
+
+
+
+
+
+4.8目标 分支的冲突解决
+完成 git  总结开发技术
+知识目录的图片功能与分页
+
+laravel化 知识库
+
+
+
+
+仓库迁出在另外的地方操作
+
+clone过来的可以直接提交，使用clone过来的项目操作
+
+
+
+
+
+git reset 120a893 a.txt   （某文件需要回退到的版本）(本地文件未变化)  在复制了历史版本到加入缓存区
+git commmit -m  "文件回退后提交"    （工作区文件依然没变化）
+git checkout  -- file     (迁出，文件变化)
+bfae459、
+
+6631607 (HEAD -> master) HEAD@{0}: reset: moving to 6631607
+2fcb488 (origin/master) HEAD@{1}: reset: moving to HEAD^^^
+0a70c38 HEAD@{3}: reset: moving to HEAD
+0a70c38 HEAD@{4}: reset: moving to HEAD^^
+6631607 (HEAD -> master) HEAD@{5}: commit: 版本4
+d6cf0eb HEAD@{6}: commit: 版本3
+0a70c38 HEAD@{7}: commit: 版本2
+2553fba HEAD@{8}: commit: 版本1
+
+从版本4（当前版本）回退到版本2操作
+第一步：git reset 0a70c38 111.txt   gitstatus显示待提交
+
+先看分支管理
+
+
+
+
+
+随手记图片记录功能
+15.单个文件回退
+13.使用版本号回退单个文件  
+
+   git reset -hard
+   git reset 120a893 a.txt
+
+   第十次修改回退到 推送到远程 111
+
+
+
+
+
+

@@ -1,0 +1,826 @@
+1####222####mysql联结是通过on的联结键整条数据联结####222####mysql联结是通过on的联结键整条数据联结####222####1476795441####333####1####222####支付接口：支付成功后回调时网络波动导致后续未更新表####222####支付接口：支付成功后回调时网络波动导致后续未更新表
+客户反馈提供支付号，在微信后台可查看订单支付情况，在网页后台手动更新后续支付####222####1477018608####333####6####222####<?php    //网上copy的正确答案####222####<?php    //网上copy的正确答案
+/**
+ * 计算$b相对于$a的相对路径
+ * @param string $a
+ * @param string $b
+ * @return string
+ */
+function getRelativePath($a, $b) {
+	$relativePath = "";
+	$pathA = explode('/', dirname($a));
+	$pathB = explode('/', dirname($b));
+	$n = 0;
+	$len = count($pathB) > count($pathA) ? count($pathA) : count($pathB);
+	do {
+		if ( $n >= $len || $pathA[$n] != $pathB[$n] ) {
+			break;
+		}
+	} while (++$n);
+	$relativePath .= str_repeat('../', count($pathB) - $n);
+	$relativePath .= implode('/', array_splice($pathA, $n));
+	return $relativePath;
+}
+echo getRelativePath('/Users/Admin/Documents/League of Legends/2.php', 
+'/Users/Admin/Documents/Tencent Files/510152716/3.php');####222####1477020409####333####7####222####前几天面试，一道题是实现一个文字版扫雷小游戏####222####前几天面试，一道题是实现一个文字版扫雷小游戏
+实现无雷区自动翻开功能，选做题是采用非递归的方式实现
+题目十分简单，首先我们来分解一下扫雷游戏应该实现的功能
+1.地图创建
+2.计算点击位置周围雷的数目
+3.无雷区自动翻开
+4.胜负判决
+
+第一步，地图创建，十分简单，创建一个二维数组类储存地图的相关信息则可，0表示无雷，1表示有雷。
+
+第二部，计算点击位置周围雷的数目
+这个也很简单，遍历目标单位上下左右共八个格子就可以了，注意排除越界情况
+function round(x,y) retun count
+count是雷的数目
+
+第三部 无雷区自动翻开
+所谓无雷区自动翻开，就是点击一个位置，如果是0，也即是无雷，那么就翻开他的上下左右8个格子，然
+后对这八个格子进行检查，如果当中某个格子也是0，那么继续对这格子的上下左右进行检查，如此反复。
+这个用递归自然可以实现，但是递归的效率并不高，而且有层次限制。这可能也是为什么给个选做用非递归
+实现的原因。我当然也用非递归实现咯。
+
+思路很简单，新开两个数组一个是待检测数组，一个是已检测数组
+检查某个位置，如x,y时，先把它Point(x,y)(或者是其他类似的地图单元类，记录地图单元信息)push进待检
+查数组。然后循环
+while(待检测数组的长度>0)｛
+count = round(point.x,point.y)
+把point从待检测数组放到已经侧数组
+如果count等于0，把point周围的八个point放进待检测数组，注意如果已检测数组里面已经有那个point
+了，就不要把它加到待检测数组里面，不然会死循环
+｝
+就是这么简单，其实和广搜的原理差不多
+
+4.胜负检测  （注：在外面加一圈可以省去越界判断, 而且在翻地的时候算法更好写.）
+这个更简单了，判断下点击的位置有枚炸弹，如果无运行第三步，然后检测剩下的格子和雷数是不是一样就
+可以了。####222####1477021018####333####6####222####//计算相对路径  标准地址，标准答案####222####//计算相对路径  标准地址，标准答案
+$a = '/a/b/c/d';   //标准地址写法，不带文件后缀
+$b = '/a/e'; //如果$b的深度没有$a大，则不用加.. 可直接写后续
+echo xPath($a, $b);
+function xPath($path1,$path2) {  //path1相对path2的路径，从path2找path1
+    //分割地址            
+    $a1 = explode('/', $path1);   
+    $a2 = explode('/', $path2);   
+    //获取相同部分
+    $same = array_intersect($a1, $a2);
+    //计算a2与same的差
+    $diff = array_diff($a2, $same);
+    //分2种情况
+    //先得到path1与same的后续路径
+    $diff1 = array_diff($a1,$same);
+    $str = implode('/', $diff1);//此处得到path1与same的后续路径
+    if (empty($diff)) { //差集为空代表path2是path1的上层目录，直接返回path1和same的差集即可
+        return $str;
+    } else {  //差集不为空的情况
+        //计算前面需要补几个../
+        $diff2 = array_diff($a2,$same);
+        $depth = count($diff2);
+        $fstr = str_repeat('../', $depth);
+        $str = $fstr.$str;
+        return $str;
+    }
+}####222####1477023180####333####1####222####td中的内容居中：####222####td中的内容居中：
+text-align:center;####222####1477277674####333####1####222####调试js页面多重循环时可使用####222####调试js页面多重循环时可使用
+console.log(tmp);
+F12在控制台Console查看####222####1477279430####333####7####222####wampserver 把apache 换成 nginx####222####wampserver 把apache 换成 nginx
+张映 发表于 2014-05-08
+分类目录： apache/nginx
+标签：apache, nginx, wampserver, windows
+习惯了windows下wamp，为了和服务器一至，所以把wamp中的apache换成了nginx，其他的不动。实
+现方法很简单
+1，下载windows下的nginx
+nginx下载地址：http://nginx.org/en/download.html
+2，把wampserver中的apache服务停掉，如果你想apache和nginx同时用的话，也可以，只不过不能同时
+监听80端口
+3，启动php-cgi和nginx
+wampserver版本不一样的话，调用的php.ini位置也不一样。如果apache调用的是php根目录下的
+php.ini，那就不做任何操作；如果不是，copy一份apache调用的php.ini到wampserver中php的根目
+录，这样做的目的，不想重新配置php.ini
+新建start.bat
+@echo off
+echo Starting PHP FastCGI...
+D:\nginx-1.5.0\RunHiddenConsole.exe D:\wamp\bin\php\php5.3.13\php-cgi.exe -b 
+127.0.0.1:9000 -c D:\wamp\bin\php\php5.3.13\php.ini
+echo Starting nginx...
+D:\nginx-1.5.0\RunHiddenConsole.exe D:/nginx-1.5.0/nginx.exe -p D:/nginx-1.5.0
+这里RunHiddenConsole.exe，是WINDOWS下的将程序运行到后一个工具，网上很多。
+4，停止php-cgi和nginx
+新建stop.bat
+@echo off
+echo Stopping nginx...
+taskkill /F /IM nginx.exe > nul
+echo Stopping PHP FastCGI...
+taskkill /F /IM php-cgi.exe > nul
+exit####222####1477405526####333####8####222####1.安装####222####1.安装
+先安装composer，再用Composer安装laravel
+composer create-project --prefer-dist laravel/laravel blog
+
+2.文件夹结构
+app  应用程序目录
+
+bootstrap  目录包含了几个框架启动跟自动加载设置的文件。以及在 cache 文件夹中包含着一些框架在启
+动性能优化时
+
+所生成的文件
+
+config   配置文件目录
+
+database   数据库配置目录
+
+public    存放laravel入口文件  目录存放着 index.php 文件，此文件被视为 Laravel 的 HTTP 入口。此目
+录还包含
+
+了前端控制器和资源文件（图片、JavaScript、CSS，等等）。
+
+Resources  资源目录  包含 视图 原始资源文件 及语言包
+
+Routes 目录 
+
+目录包含了应用的所有路由定义。Laravel 默认提供了三个路由文件：web.php、api.php 和 
+console.php。
+
+web.php 文件里定义的路由都会在 RouteServiceProvider 中被指定应用到 web 中间件组，具备 
+Session、CSRF 防护以
+
+及 Cookie 加密功能，如果应用无需提供无状态的、RESTful 风格的API，所有路由都会定义在 web.php 文
+件。
+
+api.php 文件里定义的路由都会在 RouteServiceProvider 中被指定应用到 api 中间件组，具备频率限制功
+能，这些路
+
+由是无状态的，所以请求通过这些路由进入应用需要通过 API 令牌进行认证并且不能访问 Session 状态。
+
+console.php 文件用于定义所有基于闭包的控制台命令，每个闭包都被绑定到一个控制台命令并且允许与
+命令行 IO 方法
+
+进行交互，尽管这个文件并不定义 HTTP 路由，但是它定义了基于命令行的应用入口（路由）。
+
+
+storage 目录包含编译后的 Blade 模板、基于文件的 session、文件缓存和其它框架生成的文件
+
+
+Tests 目录  提供php单元测试
+
+Vendor 目录包含你的 Composer 依赖模块。
+
+
+核心概念  （暂停）
+
+
+HTTP层
+
+路由  在web.php中   定义web页面路由
+
+
+使用artisan在 命令行下创建控制器
+
+php artisan make:controller  SitesController
+
+
+控制器传递变量
+
+$name = 'jerry';
+return view('site')->with('name',$name);
+
+模板输出变量：  {{ $name }}  2个大括号
+
+不转义输出 解析标签   {!!  $name  !!}
+<span style="color:red">jelly</span>
+
+
+控制器向模板传递多个参数
+
+
+$name = 'jerry';
+$name2 = '<span style="color:red">jelly</span>';
+return view('site',compact('name','name2')); //直接用模板变量名映射控制器变量名
+
+
+blade中的模板块 继承思想
+
+@extends('app');   继承app模板
+
+@section('content');
+@stop
+
+@yield('content')
+@yield('footer')  
+
+
+Undefined variable: name  未定义的变量name
+{{ $name or ''}}  , 解析html标签 名字二   {!! $name2 or ''!!} {{ $name2 or ''}}	 模板文件中在传递的变量
+后
+
+加上  or  ''  当变量不存在时  取初始化变量  ''
+
+
+php artisan  make:model  Article
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####222####1477643730####333####8####222####配置电脑环境####222####配置电脑环境
+
+win7 旗舰版 64位系统
+
+php    mysql    nginx    laravel版本
+
+wampserver
+
+wampserver3.0.6_x64_apache2.4.23_mysql5.7.14_php5.6.25
+
+
+版本管理工具    
+
+lidaemail@qq.com
+laravel123
+
+composser 
+
+php 包管理工具
+
+
+composer中文网
+http://www.phpcomposer.com/
+
+php包
+packagist.org
+
+composer create-project laravel/laravel Laravel
+
+
+git版本管理教程
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
+/
+
+
+laravel-admin  后台框架
+
+
+https://laravel-china.org/topics/2950
+
+
+laravel版本 5.3
+
+安装步骤：
+1.先安装composer
+2.在命令行下安装 laravel
+
+
+composer 文档
+http://docs.phpcomposer.com/
+
+laravel内置命令行 artisan
+
+
+配置wamp和zend studio 环境
+
+
+导入 laravel 项目   看文档 熟悉文件夹结构 基础
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####222####1477643741####333####8####222####laravel内置命令行 artisan####222####laravel内置命令行 artisan
+
+
+配置wamp和zend studio 环境
+
+导入 laravel 项目   看文档 熟悉文件夹结构 基础
+
+
+
+
+模板继承    数据库增删改查  （模型和migrate）          表连接   表单
+
+操作       高级功能
+
+
+
+
+section      yield     extends     parent
+
+
+使用模板继承的原因     页面   头部  尾部    内容一样  公共部分
+
+定义页面布局  实现模板继承
+
+头部  
+
+侧边栏    主要内容区域     
+
+底部
+
+
+section  定义视图片段
+
+yield  指定section显示的内容
+
+yield  定义   不能确定显示
+
+section   既能定义  也能扩展    也可有子模板
+
+子模板如何继承使用布局
+
+
+模板继承的思想  继承并更改子模板自定义内容
+
+yield 不能定义块  能定义初始化内容 
+
+section 能定义块   在子模板进行更换
+
+
+数据库增删改查    博客文章  列表  增删改
+
+
+数据库操作的几种方式
+
+原生方式  $users = DB::select('select * from users where active = 
+
+?', [1]);
+
+模型操作 get方法  与 all方法 的区别
+
+一般情况下获取的数据是对象
+
+数据库事务
+
+DB::transaction(function () {
+    DB::table('users')->update(['votes' => 1]);
+
+    DB::table('posts')->delete();
+});
+
+
+显示最后输出的sql语句
+
+
+模型操作数据库
+
+
+默认设置时间戳
+
+
+模型可以更改 不同的数据库连接   连接不同的数据库
+protected $connection = 'connection-name';
+
+
+新建2张关联表 操作模型
+
+
+migrate        表连接       表单操作       高级功能
+
+
+数据填充     seeder 类   
+
+
+配置redis 服务器   使用Redis类操作服务器
+
+
+表连接       表单操作       高级功能
+
+
+原样输出  @{{  $name  }}
+
+
+在模板页面通过路由的名字和 url函数生成  url连接
+{{ url('url') }} 指定路由名称 获取连接
+
+{{ action('articlesController@urlTest')}}    指定控制器及方法名  获
+
+取url
+
+
+laravel表单    get请求 与 post请求     curl post访问   表单post提交
+
+
+$request->input('name')  接受请求的数据
+
+$request->has('name') 是否有这个数据
+
+
+//判断请求类型
+
+
+echo $request->method();
+     $request->isMethod('POST');
+
+$request->ajax();  是否ajax请求
+
+$res = $request->is('student/*') 判断是否固定路由格式
+
+$request->url()方法  获得当前url
+
+
+//使用session的方法
+
+HTTP request类的session()方法
+
+session()辅助函数
+
+Session facade
+
+加中间件 Route::group(['middleware'] => '')
+
+$requese->session()->get()
+
+$session->put()
+
+$session->get()
+
+
+Session类操作
+
+Session::put  Session::get
+
+存数组数据形式入session
+
+Session::put(['key4' => 'value4'])
+
+从session数据 取出后就删除
+
+Session::pull() 取出后就删除
+
+//取出session所有的值
+
+Session::all();
+
+Session::has()
+
+
+return json字符串
+
+中间件
+
+asset
+
+findorFail()
+
+url() 函数及其传递参数
+
+url('articles',$article->id)
+
+{!!   Form::open()   !!}
+
+{!!   Form::text('name')   !!}
+
+{!!   Form::close()   !!}
+
+Article::create($input) 使用模型新增数据
+
+queryScop 在模型中创建方法 在控制器方法中调用
+
+
+Article::latest()->published()->get();
+
+public function setPublishedAtAttribute
+
+scopePublished
+
+表单验证
+
+生成 Requests  创建一个 Requests
+
+在rules增加匹配规则
+
+在定义$request变量时 增加 request验证文件
+
+store(Requests\CreateArticleRequest $request)
+
+
+表单模型绑定
+
+
+使用资源路由直接注册所有路由
+
+Route::resource('articles','ArticlesController');
+注册 列表 增删改查等路由
+
+ laravel log 
+####222####1477733720####333####1####222####1.与数据库无关的情况####222####1.与数据库无关的情况
+->1.<meta http-equiv="content-type" content="text/html;charset=utf-8" />的编码设置
+浏览器以什么方式解读网页
+->2.文件的编码。在zendstudio设置好默认编码后重新打开文件，看文字是否乱掉
+  zend默认编码的设置
+      windows->preference->General->workplace,将右边的“text file encoding”修改为utf8格式
+      windows->preference->General->Editors->Text Editors->Spelling右边面板的Encoding里面
+将编码改为utf8格式
+    窗口-首选项-php-debug-encoding setting####222####1477828187####333####10####222####判断请求方法####222####判断请求方法
+$request->isMethod('POST')####222####1477835233####333####10####222####在路由中添加为get路由时使用post去请求报错：####222####在路由中添加为get路由时使用post去请求报错：
+MethodNotAllowedHttpException in RouteCollection.php line 218:####222####1477836327####333####10####222####post提交报错：####222####post提交报错：
+TokenMismatchException in VerifyCsrfToken.php line 67:
+原因：
+laravel 默认开启了 csrf验证 ，不是get请求的话需要验证csrf,在表单里 加个隐藏域  
+<input type="hidden" name="_token"         value="{csrf_token()}"/>
+####222####1477836896####333####15####222####数据模型层报错####222####数据模型层报错
+MassAssignmentException in Model.php line 445:####222####1477837957####333####15####222####https://packagist.org/####222####https://packagist.org/####222####1477838737####333####6####222####一个短信接口类及其调用####222####一个短信接口类及其调用
+$ress = $sendsms->sendSMS($mobile_phone,$conte,$telid);
+
+<?php 
+class Sms {
+
+    public $http = "";		//短信接口
+    public $uid = "";							//用户账号
+    Public $pwd = "";    //用户密码
+
+    public  function sendSMS($mobile,$content,$mobileids,$time='',$mid='')
+    {
+
+        $data = array
+        (
+            'uid'=>'ey111cn',					//用户账号
+            'pwd'=>md5('yijiayi2015'.'ey111cn'),			//MD5位32密码,密码和用户名拼接字符
+            'mobile'=>$mobile,				//号码
+            'content'=>iconv('UTF-8', 'GBK',$content),			//内容
+            'mobileids'=>$mobileids,		//发送唯一编号
+        );
+
+        $re= $this->postSMS('http://api.sms.cn/mt/',$data);			//POST方式提交
+
+        //$re = getSMS('http://api.sms.cn/mt/',$data='');		//GET方式提交
+
+        if( strstr($re,'stat=100'))
+        {
+            return "发送成功!";
+        }
+        else if( strstr($re,'stat=101'))
+        {
+            return "验证失败! 状态：".$re;
+        }
+        else
+        {
+            return "发送失败! 状态：".$re;
+        }
+    }
+    //POST方式
+    public  function postSMS($url,$data='')
+    {
+        $row = parse_url($url);
+        $host = $row['host'];
+        $port = $row['port'] ? $row['port']:80;
+        $file = $row['path'];
+        while (list($k,$v) = each($data))
+        {
+            $post .= rawurlencode($k)."=".rawurlencode($v)."&";	//转URL标准码
+        }
+        $post = substr( $post , 0 , -1 );
+        $len = strlen($post);
+        $fp = @fsockopen( $host ,$port, $errno, $errstr, 10);
+        if (!$fp) {
+            return "$errstr ($errno)\n";
+        } else {
+            $receive = '';
+            $out = "POST $file HTTP/1.1\r\n";
+            $out .= "Host: $host\r\n";
+            $out .= "Content-type: application/x-www-form-urlencoded\r\n";
+            $out .= "Connection: Close\r\n";
+            $out .= "Content-Length: $len\r\n\r\n";
+            $out .= $post;
+            fwrite($fp, $out);
+            while (!feof($fp)) {
+                $receive .= fgets($fp, 128);
+            }
+            fclose($fp);
+            $receive = explode("\r\n\r\n",$receive);
+            unset($receive[0]);
+            return implode("",$receive);
+        }
+    }
+//GET方式
+   public function getSMS($url,$data='')
+    {
+        $get='';
+        while (list($k,$v) = each($data))
+        {
+            $get .= $k."=".urlencode($v)."&";	//转URL标准码
+        }
+        return file_get_contents($url.'?'.$get);
+    }
+}####222####1477923468####333####15####222####连续几个post路由  ####222####连续几个post路由  
+step1   1.填手机号  下一步 提交后发送短信并跳转  跳转时 隐藏域传递手机号 
+step2   2.接收手机号  post到验证   用户输入验证码  与 手机号+验证码匹配 （参考注册功能）
+step3   3.验证并修改密码
+
+路由  1   get   显示页面1  填写手机号    提交方法 post
+      2   post  ####222####1477925467####333####1####222####隐藏手机号码中间4位####222####隐藏手机号码中间4位
+Method 2：
+$num = "13966778888"
+ $str = substr_replace($num,'****',3,4);####222####1477973927####333####1####222####telnet下模拟get请求####222####telnet下模拟get请求
+1.cmd下telnet主机ip地址 80端口
+2.按下快捷键： ctrl + ']'  再按下回车打开回显功能
+3.发送请求报文
+
+发送的报文
+GET(请求方法) /test/index.php（请求url） HTTP/1.1（http协议版本）    (自动定位到www目录)
+Host:localhost（请求首部）
+回车回车（空行）
+
+（服务器响应内容）
+HTTP/1.1  200  OK （状态行，版本，状态码，状态描述）
+Date: Sun, ..
+Server:Apache/2.4.23  (Win64)   PHP/5.6.25
+X-Powered-By: PHP/5.6.25
+Content-Length: 3
+Content-Type: text/html;  charset=UTF-8
+
+666
+
+
+
+
+####222####1487493042####333####1####222####telnet模拟post请求####222####telnet模拟post请求
+
+POST /test/index.php HTTP/1.1
+Host:localhost
+Content-type:application/x-www-form-urlencoded
+content-length:20 （只截取20字节发送）
+
+act=query&name=ghost####222####1487493690####333####1####222####sql插入语句插入中文时字段要加单引号 同意格式外层双引号  内层单引号加大括号变量####222####sql插入语句插入中文时字段要加单引号 同意格式外层双引号  内层单引号加大括号变量
+" insert into message (title,content) values ('{$title}','{$content}')";####222####1487819624####333####1####222####做web开发的时候，经常会遇到表单提交的内容，比如帖子，评论等。这时候我们就的注意防止用户的恶意####222####做web开发的时候，经常会遇到表单提交的内容，比如帖子，评论等。这时候我们就的注意防止用户的恶意
+攻击了。我做了一下总结，如果还有其它好的方法，不妨分享一下！
+1.添加验证码的控制，可以有效的防止用户的恶意攻击了，除非他知道你 的验证码的算法。
+2.像discuz中那样form表单中增加forhash的隐藏域，判断是否是从我的网站中提交的。
+3.可以判断两次提交的时间间隔，用session来记录上次提交的时间。
+  	   if (!isset($_SESSION['send_time']))
+            {
+                $_SESSION['send_time'] = 0;
+            }
+            $cur_time = time();
+            if (($cur_time - $_SESSION['send_time']) < 10) // 小于10秒禁止发评论
+            {
+                //输出用户的评论应该10秒之后再评论
+            }else{//正常的提交
+		//处理用户的提交内容
+		.......
+		$_SESSION['send_time'] = $cur_time;//用session记录提交的时间
+	    }
+4.可以控制用户的长时间内可以提交几次，如10分钟10次等。
+暂时先这些吧。####222####1487831442####333####7####222####PHP 中 9 大缓存技术总结####222####PHP 中 9 大缓存技术总结
+也就是将页面全部生成html静态页面，用户访问时直接访问的静态页面，而不会去走php服务器解析的流
+程。此种方式，在CMS系统中比较常见，比如dedecms；
+作者：来源：php100|2015-09-14 15:34 收藏  分享
+1、全页面静态化缓存
+也就是将页面全部生成html静态页面，用户访问时直接访问的静态页面，而不会去走php服务器解析的流
+程。此种方式，在CMS系统中比较常见，比如dedecms；
+一种比较常用的实现方式是用输出缓存：
+Ob_start()
+******要运行的代码*******
+$content = Ob_get_contents();
+****将缓存内容写入html文件*****
+Ob_end_clean();
+2、页面部分缓存
+该种方式，是将一个页面中不经常变的部分进行静态缓存，而经常变化的块不缓存，最后组装在一起显示；
+可以使用类似于ob_get_contents 的方式实现，也可以利用类似ESI之类的页面片段缓存策略，使其用来做
+动态页面中相对静态的片段部分的缓存(ESI技术，请baidu，此处不详讲)。
+该种方式可以用于如商城中的商品页；
+3、数据缓存
+顾名思义，就是缓存数据的一种方式；比如，商城中的某个商品信息，当用商品id去请求时，就会得出包括
+店铺信息、商品信息等数据，此时就可以将这些 数据缓存到一个php文件中，文件名包含商品id来建一个
+唯一标示；下一次有人想查看这个商品时，首先就直接调这个文件里面的信息，而不用再去数据库查 询；
+其实缓存文件中缓存的就是一个php数组之类；
+Ecmall商城系统里面就用了这种方式；
+4、查询缓存
+其实这跟数据缓存是一个思路，就是根据查询语句来缓存；将查询得到的数据缓存在一个文件中，下次遇到
+相同的查询时，就直接先从这个文件里面调数据，不会再去查数据库；但此处的缓存文件名可能就需要以查
+询语句为基点来建立唯一标示；
+按时间变更进行缓存
+其实，这一条不是真正的缓存方式；上面的2、3、4的缓存技术一般都用到了时间变更判断；就是对于缓存
+文件您需要设一个有效时间，在这个有效时间 内，相同的访问才会先取缓存文件的内容，但是超过设定的
+缓存时间，就需要重新从数据库中获取数据，并生产最新的缓存文件；比如，我将我们商城的首页就是设 
+置2个小时更新一次；
+5、按内容变更进行缓存
+这个也并非独立的缓存技术，需结合着用；就是当数据库内容被修改时，即刻更新缓存文件；
+比如，一个人流量很大的商城，商品很多，商品表必然比较大，这表的压力也比较重；我们就可以对商品显
+示页进行页面缓存；
+当商家在后台修改这个商品的信息时，点击保存，我们同时就更新缓存文件；那么，买家访问这个商品信息
+时，实际上访问的是一个静态页面，而不需要再去访问数据库；
+试想，如果对商品页不缓存，那么每次访问一个商品就要去数据库查一次，如果有10万人在线浏览商品，
+那服务器压力就大了；
+6、内存式缓存
+提到这个，可能大家想到的首先就是Memcached；memcached是高性能的分布式内存缓存服务器。 一般
+的使用目的是，通过缓存数据库查询结果，减少数据库访问次数，以提高动态Web应用的速度、 提高可扩
+展性。
+它就是将需要缓存的信息，缓存到系统内存中，需要获取信息时，直接到内存中取；比较常用的方式就是 
+key–>value方式；
+<?php 
+     $memcachehost = '192.168.6.191';
+     $memcacheport = 11211;
+     $memcachelife = 60;
+     $memcache = new Memcache;
+     $memcache->connect($memcachehost,$memcacheport) or die ("Could not connect");
+     $memcache->set('key','缓存的内容');
+     $get = $memcache->get($key);       //获取信息
+?>
+7、apache缓存模块
+apache安装完以后，是不允许被cache的。如果外接了cache或squid服务器要求进行web加速的话，就需
+要在htttpd.conf里进行设置，当然前提是在安装apache的时候要激活mod_cache的模块。
+安装apache时：./configure –enable-cache –enable-disk-cache –enable-mem-cache
+8、php APC缓存扩展
+Php有一个APC缓存扩展，windows下面为php_apc.dll，需要先加载这个模块，然后是在php.ini里面进行
+配置：
+[apc] 
+     extension=php_apc.dll 
+     apc.rfc1867 = on 
+     upload_max_filesize = 100M 
+     post_max_size = 100M 
+     apc.max_file_size = 200M 
+     upload_max_filesize = 1000M 
+     post_max_size = 1000M 
+     max_execution_time = 600 ;   每个PHP页面运行的最大时间值(秒)，默认30秒 
+     max_input_time = 600 ;       每个PHP页面接收数据所需的最大时间，默认60 
+     memory_limit = 128M ;       每个PHP页面所吃掉的最大内存，默认8M
+9、Opcode缓存
+我们知道，php的执行流程可以用下图来展示：
+
+首先php代码被解析为Tokens，然后再编译为Opcode码，最后执行Opcode码，返回结果；所以，对于相
+同的php文件，第一次运行时 可以缓存其Opcode码，下次再执行这个页面时，直接会去找到缓存下的
+opcode码，直接执行最后一步，而不再需要中间的步骤了。
+比较知名的是XCache、Turck MM Cache、PHP Accelerator等。####222####1487835279####333####1####222####php延时跳转####222####php延时跳转
+header("Refresh:2;url=http://www.baidu.com");####222####1505810823####333####2####222####mysql语句总结####222####mysql语句总结
+student表
+S#(编号)Sname   Sage   Ssex(性别1男2女)
+1	张三	22	2
+2	爱振	19	2
+3	仁克	25	1
+4	仁克	26	1
+
+显示全表数据
+SELECT * FROM student
+
+分组显示某列数量多于1个的
+SELECT * FROM student GROUP BY Sname HAVING count(sname) > 1
+
+统计全部学生数量
+SELECT count(sid) as count FROM student
+
+统计全部男生数量（先where查询再统计总数）
+SELECT count(sid) as count FROM student where Ssex = 1
+
+使用group by显示男女生人数（count结合group by之后显示分组的数量）
+SELECT Ssex,count(sid) FROM student GROUP BY Ssex
+
+显示名字（sname）不重复的数据条数
+SELECT count(DISTINCT(Sname)) FROM student
+
+同上显示名字不重复数据条数 使用先group by在统计
+SELECT count(sid) as count from student where sid in
+
+(SELECT sid from ( SELECT sid FROM student GROUP BY Sname ) b)####222####1521433526####333####
